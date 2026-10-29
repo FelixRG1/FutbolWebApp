@@ -1,0 +1,11 @@
+# Archivos de bloqueo y configuración de Studio
+IdeSrc/
+*.loc
+*.dsk
+
+# Temporales y ejecutables
+Programs/*.exe
+Programs/*.pso
+*.log
+*.tmp
+*.bak
