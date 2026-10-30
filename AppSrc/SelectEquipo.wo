@@ -37,12 +37,12 @@ Object oSelectEquipo is a cWebView
         Set psCSSClass to "MobileList"
         Set pbServerOnRowClick to True
         Set pbFillHeight to True
-        Set pbShowHeader to False
+        Set pbShowHeader to True
         Set piSortColumn to 0
 
         Object oequipoNombre is a cWebColumn
             Entry_Item equipo.Nombre
-            Set psCaption to "equipo.Nombre"
+            Set psCaption to "Equipo"
             Set piWidth to 1201
         End_Object 
 

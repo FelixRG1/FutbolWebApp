@@ -1,5 +1,5 @@
 Compiling Program: C:\Users\Usuario\Documents\DataFlex Projects\FutbolWebApp\AppSrc\WebApp.src
-Memory Available: 34078810112
+Memory Available: 34515107840
 1>Use AllWebAppClasses.pkg
 Using pre-compiled package ALLWEBAPPCLASSES.PKG
 Including file: AllWebAppClasses.x64.pkd    (C:\Program Files\DataFlex 25.0\Pkg\AllWebAppClasses.x64.pkd)
@@ -1812,18 +1812,18 @@ Including file: SelectLiga.wo    (C:\Users\Usuario\Documents\DataFlex Projects\F
 37656>>>        Set psCSSClass to "MobileList"
 37657>>>        Set pbServerOnRowClick to True
 37658>>>        Set pbFillHeight to True
-37659>>>        Set pbShowHeader to False
+37659>>>        Set pbShowHeader to True
 37660>>>        Set piSortColumn to 0
 37661>>>
 37661>>>        Object oligaNombre is a cWebColumn
 37663>>>            Entry_Item liga.Nombre
-37664>>>            Set psCaption to "liga.Nombre"
+37664>>>            Set psCaption to "Liga"
 37665>>>            Set piWidth to 1000
 37666>>>        End_Object 
 37667>>>
 37667>>>        Object oligaPais is a cWebColumn
 37669>>>            Entry_Item liga.Pais
-37670>>>            Set psCaption to "liga.Pais"
+37670>>>            Set psCaption to "País"
 37671>>>            Set piWidth to 500
 37672>>>        End_Object 
 37673>>>
@@ -2148,12 +2148,12 @@ Including file: SelectPosicion.wo    (C:\Users\Usuario\Documents\DataFlex Projec
 37937>>>        Set psCSSClass to "MobileList"
 37938>>>        Set pbServerOnRowClick to True
 37939>>>        Set pbFillHeight to True
-37940>>>        Set pbShowHeader to False
+37940>>>        Set pbShowHeader to True
 37941>>>        Set piSortColumn to 0
 37942>>>
 37942>>>        Object oposicionNombre is a cWebColumn
 37944>>>            Entry_Item posicion.Nombre
-37945>>>            Set psCaption to "posicion.Nombre"
+37945>>>            Set psCaption to "Rol en el campo"
 37946>>>            Set piWidth to 500
 37947>>>        End_Object 
 37948>>>
@@ -2541,24 +2541,24 @@ Including file: SelectEntrenador.wo    (C:\Users\Usuario\Documents\DataFlex Proj
 38267>>>        Set psCSSClass to "MobileList"
 38268>>>        Set pbServerOnRowClick to True
 38269>>>        Set pbFillHeight to True
-38270>>>        Set pbShowHeader to False
+38270>>>        Set pbShowHeader to True
 38271>>>        Set piSortColumn to 0
 38272>>>
 38272>>>        Object oentrenadorNombre is a cWebColumn
 38274>>>            Entry_Item entrenador.Nombre
-38275>>>            Set psCaption to "entrenador.Nombre"
+38275>>>            Set psCaption to "Nombre"
 38276>>>            Set piWidth to 600
 38277>>>        End_Object 
 38278>>>
 38278>>>        Object oentrenadorApellido is a cWebColumn
 38280>>>            Entry_Item entrenador.Apellido
-38281>>>            Set psCaption to "entrenador.Apellido"
+38281>>>            Set psCaption to "Apellido"
 38282>>>            Set piWidth to 600
 38283>>>        End_Object 
 38284>>>
 38284>>>        Object oentrenadorNacionalidad is a cWebColumn
 38286>>>            Entry_Item entrenador.Nacionalidad
-38287>>>            Set psCaption to "entrenador.Nacionalidad"
+38287>>>            Set psCaption to "Nacionalidad"
 38288>>>            Set piWidth to 500
 38289>>>        End_Object 
 38290>>>
@@ -2869,12 +2869,12 @@ Including file: SelectEquipo.wo    (C:\Users\Usuario\Documents\DataFlex Projects
 38545>>>        Set psCSSClass to "MobileList"
 38546>>>        Set pbServerOnRowClick to True
 38547>>>        Set pbFillHeight to True
-38548>>>        Set pbShowHeader to False
+38548>>>        Set pbShowHeader to True
 38549>>>        Set piSortColumn to 0
 38550>>>
 38550>>>        Object oequipoNombre is a cWebColumn
 38552>>>            Entry_Item equipo.Nombre
-38553>>>            Set psCaption to "equipo.Nombre"
+38553>>>            Set psCaption to "Equipo"
 38554>>>            Set piWidth to 1201
 38555>>>        End_Object 
 38556>>>
@@ -3236,24 +3236,24 @@ Including file: SelectJugador.wo    (C:\Users\Usuario\Documents\DataFlex Project
 38855>>>        Set psCSSClass to "MobileList"
 38856>>>        Set pbServerOnRowClick to True
 38857>>>        Set pbFillHeight to True
-38858>>>        Set pbShowHeader to False
+38858>>>        Set pbShowHeader to True
 38859>>>        Set piSortColumn to 0
 38860>>>
 38860>>>        Object ojugadorNombre is a cWebColumn
 38862>>>            Entry_Item jugador.Nombre
-38863>>>            Set psCaption to "jugador.Nombre"
+38863>>>            Set psCaption to "Nombre"
 38864>>>            Set piWidth to 600
 38865>>>        End_Object 
 38866>>>
 38866>>>        Object ojugadorApellido is a cWebColumn
 38868>>>            Entry_Item jugador.Apellido
-38869>>>            Set psCaption to "jugador.Apellido"
+38869>>>            Set psCaption to "Apellido"
 38870>>>            Set piWidth to 600
 38871>>>        End_Object 
 38872>>>
 38872>>>        Object ojugadorNacionalidad is a cWebColumn
 38874>>>            Entry_Item jugador.Nacionalidad
-38875>>>            Set psCaption to "jugador.Nacionalidad"
+38875>>>            Set psCaption to "Nacionalidad"
 38876>>>            Set piWidth to 500
 38877>>>        End_Object 
 38878>>>
@@ -3377,7 +3377,7 @@ Including file: SelectJugador.wo    (C:\Users\Usuario\Documents\DataFlex Project
 38993>Send StartWebApp of oWebApp
 38994>
 Summary
-Memory Available: 34063597568
+Memory Available: 34491645952
 Total Warnings : 0
 Total Errors   : 0
 Total Symbols  : 25608
@@ -3385,6 +3385,6 @@ Total Resources: 0
 Total Commands : 38993
 Total Windows  : 0
 Total Pages    : 0
-Static Data    : 485473
+Static Data    : 485405
 Message area   : 261487
 Total Blocks   : 17338

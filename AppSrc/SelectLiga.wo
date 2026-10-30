@@ -32,18 +32,18 @@ Object oSelectLiga is a cWebView
         Set psCSSClass to "MobileList"
         Set pbServerOnRowClick to True
         Set pbFillHeight to True
-        Set pbShowHeader to False
+        Set pbShowHeader to True
         Set piSortColumn to 0
 
         Object oligaNombre is a cWebColumn
             Entry_Item liga.Nombre
-            Set psCaption to "liga.Nombre"
+            Set psCaption to "Liga"
             Set piWidth to 1000
         End_Object 
 
         Object oligaPais is a cWebColumn
             Entry_Item liga.Pais
-            Set psCaption to "liga.Pais"
+            Set psCaption to "País"
             Set piWidth to 500
         End_Object 
 
