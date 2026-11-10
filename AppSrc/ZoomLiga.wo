@@ -9,6 +9,7 @@ Use cWebMenuItem.pkg
 Use cWebForm.pkg
 Use cequipoDataDictionary.dd
 Use cligaDataDictionary.dd
+Use SelectEquipo.wo
 
 Object oZoomLiga is a cWebView
     Set piColumnCount to 12
@@ -87,7 +88,18 @@ Object oZoomLiga is a cWebView
              Set piWidth to 100
         End_Object
         
-    End_Object
+        End_Object
+        
+        Object oBtnVerEquipos is a cWebButton
+            Set piColumnSpan to 12
+            Set piColumnIndex to 0
+            Set psCaption to "Ver todos los equipos de esta liga"
+            WebRegisterPath ntNavigateForward oSelectEquipo 
+            
+            Procedure OnClick
+                Send NavigateForward of oSelectEquipo Self
+            End_Procedure
+        End_Object
 
     End_Object 
 
