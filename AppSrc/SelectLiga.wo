@@ -36,7 +36,16 @@ Object oSelectLiga is a cWebView
         Set piSortColumn to 0
         
         Procedure OnRowClick String sRowId
-        Send NavigateForward of oZoomLiga Self
+            tWebNavigateData NavigateData
+            Get GetNavigateData to NavigateData
+            
+            If (NavigateData.eNavigateType = nfFromChild) Begin
+                Send NavigateClose
+            End
+        Else Begin
+            Send NavigateForward of oZoomLiga Self
+        End
+
         End_Procedure
 
         Object oligaNombre is a cWebColumn
