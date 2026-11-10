@@ -34,6 +34,10 @@ Object oSelectLiga is a cWebView
         Set pbFillHeight to True
         Set pbShowHeader to True
         Set piSortColumn to 0
+        
+        Procedure OnRowClick String sRowId
+        Send NavigateForward of oZoomLiga Self
+        End_Procedure
 
         Object oligaNombre is a cWebColumn
             Entry_Item liga.Nombre

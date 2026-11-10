@@ -44,6 +44,10 @@ Object oSelectJugador is a cWebView
         Set pbFillHeight to True
         Set pbShowHeader to True
         Set piSortColumn to 0
+        
+        Procedure OnRowClick String sRowID
+            Send NavigateForward of oZoomJugador Self
+        End_Procedure
 
         Object ojugadorNombre is a cWebColumn
             Entry_Item jugador.Nombre

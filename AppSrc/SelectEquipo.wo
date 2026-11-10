@@ -33,12 +33,17 @@ Object oSelectEquipo is a cWebView
 
 
     Object oList is a cWebList
+        Set pbDataAware to True
         Set piColumnSpan to 0
         Set psCSSClass to "MobileList"
         Set pbServerOnRowClick to True
         Set pbFillHeight to True
         Set pbShowHeader to True
         Set piSortColumn to 0
+        
+        Procedure OnRowClick String sRowID
+            Send NavigateForward of oZoomEquipo Self
+        End_Procedure
 
         Object oequipoNombre is a cWebColumn
             Entry_Item equipo.Nombre
