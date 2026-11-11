@@ -35,6 +35,10 @@ Object oSelectPosicion is a cWebView
         Set pbShowHeader to True
         Set piSortColumn to 0
 
+        Procedure OnRowClick String sRowID
+            Send NavigateForward of oZoomPosicion Self
+        End_Procedure
+        
         Object oposicionNombre is a cWebColumn
             Entry_Item posicion.Nombre
             Set psCaption to "Rol en el campo"

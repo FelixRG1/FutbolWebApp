@@ -44,6 +44,10 @@ Object oSelectEntrenador is a cWebView
         Set pbFillHeight to True
         Set pbShowHeader to True
         Set piSortColumn to 0
+        
+        Procedure OnRowClick String sRowID
+            Send NavigateForward of oZoomEntrenador Self
+        End_Procedure
 
         Object oentrenadorNombre is a cWebColumn
             Entry_Item entrenador.Nombre

@@ -7,6 +7,7 @@ Use cWebPanel.pkg
 Use cWebMenuGroup.pkg
 Use cWebMenuItem.pkg
 Use cWebForm.pkg
+Use SelectLiga.wo
 
 Use cligaDataDictionary.dd
 Use cequipoDataDictionary.dd
@@ -24,67 +25,111 @@ Object oZoomEquipo is a cWebView
     End_Object 
 
     Object oequipo_DD is a cequipoDataDictionary
-        Set DDO_Server To oliga_DD
+        Set DDO_Server to oliga_DD
     End_Object 
 
-    Set Main_DD To oequipo_DD
-    Set Server  To oequipo_DD
+    Set Main_DD to oequipo_DD
+    Set Server  to oequipo_DD
+    
+    Procedure OnNavigateForward tWebNavigateData NavigateData Handle hoInvokingView Handle hoInvokingObject
+        Boolean bHasRecord
+        String sNombre
+        
+        Forward Send OnNavigateForward NavigateData hoInvokingView hoInvokingObject
+    
+        Get HasRecord of (Server(Self)) to bHasRecord
+    
+        If (bHasRecord) Begin
+            Move (Trim(Equipo.Nombre)) to sNombre
+            WebSet psCaption to ("Equipo: " + sNombre)
+            Send SetHeaderCaption ("Equipo: " + sNombre)
+            Send SetBreadCrumbCaption sNombre
+        End
+        Else Begin
+            WebSet psCaption to "Nuevo Equipo"
+            Send SetHeaderCaption "Nuevo Equipo"
+            Send SetBreadCrumbCaption "Nuevo"
+        End
 
+        Send SetActionButtons
+    End_Procedure
 
     Object oWebMainPanel is a cWebPanel
-        Set piColumnCount to 12
-        WebSetResponsive piColumnCount rmMobile to 4
-
-        Object oequipoNombre is a cWebForm
-            Entry_Item equipo.Nombre
-            Set piColumnSpan to 12
-            Set piColumnIndex to 0
-            Set peLabelPosition to lpTop
-            Set psLabel to "Nombre"
-        End_Object 
-    End_Object 
+            Set piColumnCount to 12
+            WebSetResponsive piColumnCount rmMobile to 4
+            
+            Object oGrpDatosEquipo is a cWebGroup
+                Set psCaption to "Información del Club"
+                Set piColumnCount to 12
+                Set piColumnSpan to 12
+                Set piColumnIndex to 0
+            End_Object
+    
+           
+            Object oEquipoNombre is a cWebForm
+                Entry_Item Equipo.Nombre
+                Set piColumnSpan to 12
+                Set piColumnIndex to 0
+                Set peLabelPosition to lpTop
+                Set psLabel to "Nombre del Equipo"
+            End_Object
+    
+           
+            Object oLigaNombre is a cWebForm
+                Entry_Item Liga.Nombre
+                Set piColumnSpan to 12
+                Set piColumnIndex to 0
+                Set peLabelPosition to lpTop
+                Set psLabel to "Liga"
+                Set pbPromptButton to True
+    
+                WebRegisterPath ntNavigateForward oSelectLiga
+                
+                Procedure OnPrompt
+                    Send NavigateForward of oSelectLiga Self
+                End_Procedure
+            End_Object
+        End_Object
 
     Object oActionGroup is a cWebMenuGroup
 
         Object oSaveBtn is a cWebMenuItem
             Set psCSSClass to "WebSaveMenuItem"
-            Set psCaption to "Save"
+            Set psCaption to "Guardar"
 
             Procedure OnClick
                 Send Request_Save
             End_Procedure
-
         End_Object 
 
         Object oEditBtn is a cWebMenuItem
             Set psCSSClass to "WebEditMenuItem"
-            Set psCaption to "Edit"
+            Set psCaption to "Editar"
+
             Procedure OnClick
                 Send ChangeEditMode True
                 Send SetActionButtons
             End_Procedure
-
         End_Object 
 
         Object oDeleteBtn is a cWebMenuItem
             Set psCSSClass to "WebDeleteMenuItem"
-            Set psCaption to "Delete"
+            Set psCaption to "Borrar"
             Set peActionDisplay to adMenu
 
             Procedure OnClick
                 Send Request_Delete
             End_Procedure
-
         End_Object 
 
         Object oCancelChangesBtn is a cWebMenuItem
             Set psCSSClass to "WebIcon_Refresh"
-            Set psCaption to "Clear Changes"
+            Set psCaption to "Eliminar Cambios"
             Set peActionDisplay to adMenu
+
             Procedure OnClick
                 Send RefreshRecord
             End_Procedure
-
         End_Object 
     End_Object 
 
@@ -97,7 +142,6 @@ Object oZoomEquipo is a cWebView
         Get GetNavigateData to NavigateData
         Get HasRecord of hoDD to bHasRecord
 
-        // let's hide all buttons and then Show the ones we want
         WebSet pbRender of oEditBtn to False
         WebSet pbRender of oSaveBtn to False
         WebSet pbRender of oCancelChangesBtn to False
@@ -114,35 +158,11 @@ Object oZoomEquipo is a cWebView
     End_Procedure
 
     Procedure OnViewSaved Handle hoServer Boolean bChanged
-        // Close after save
         Send NavigateClose Self
     End_Procedure
 
-    // this will close the view after a delete
     Procedure OnViewDeleted Handle hoDDO
         Send NavigateClose Self
     End_Procedure
 
-    Procedure OnNavigateForward tWebNavigateData NavigateData Integer hoInvokingView Integer hoInvokingObject
-        Case Begin
-            Case (NavigateData.eNavigateType = nfFromMain)
-                // If from main, this is a propbably a main file Select to Zoom.
-                Case Break
-
-            Case (NavigateData.eNavigateType = nfFromParent)
-                // If from parent, this is a constrained drill down.
-                Case Break
-
-            Case (NavigateData.eNavigateType = nfFromChild)
-                // If from child, this is a probably a parent Zoom from a Zoom.
-                Case Break
-
-            Case Else // must be nfUndefined
-
-        Case End
-
-        Send SetActionButtons
-
-    End_Procedure
-
-End_Object 
+End_Object

@@ -3,9 +3,11 @@ IdeSrc/
 *.loc
 *.dsk
 
-# Temporales y ejecutables
+# Compilados y temporales de DataFlex
+*.dbg
+*.dep
+*.prn
+*.cfg
 Programs/*.exe
-Programs/*.pso
-*.log
-*.tmp
-*.bak
+Programs/*.dbg
+AppHtml/Cache/*
