@@ -67,7 +67,7 @@ Object oSelectJugador is a cWebView
             Set piWidth to 500
         End_Object 
         
-        // --- COLUMNA DE BOTÓN CON ICONO CIRCULAR PLANO ---
+  
         Object oDetailButton is a cWebColumnButton
             Set psCaption to "btn"
             Set piWidth to 45
@@ -77,7 +77,7 @@ Object oSelectJugador is a cWebView
 
             WebRegisterPath ntNavigateForward oZoomJugador
 
-            // En DataFlex se usa AddButton para definir el icono vectorial circular
+      
             Procedure OnDefineButtons
                 Send AddButton "btnInfo" "" "WebIcon_Info" "WebBtn_Flat"
             End_Procedure
