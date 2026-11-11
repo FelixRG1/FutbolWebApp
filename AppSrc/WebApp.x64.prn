@@ -1,5 +1,5 @@
 Compiling Program: C:\Users\Usuario\Documents\DataFlex Projects\FutbolWebApp\AppSrc\WebApp.src
-Memory Available: 39137177600
+Memory Available: 39125942272
 1>Use AllWebAppClasses.pkg
 Using pre-compiled package ALLWEBAPPCLASSES.PKG
 Including file: AllWebAppClasses.x64.pkd    (C:\Program Files\DataFlex 25.0\Pkg\AllWebAppClasses.x64.pkd)
@@ -3386,7 +3386,7 @@ Including file: SelectJugador.wo    (C:\Users\Usuario\Documents\DataFlex Project
 39052>>>            Set piWidth to 500
 39053>>>        End_Object 
 39054>>>        
-39054>>>        // --- COLUMNA DE BOTÓN CON ICONO CIRCULAR PLANO ---
+39054>>>  
 39054>>>        Object oDetailButton is a cWebColumnButton
 39056>>>            Set psCaption to "btn"
 39057>>>            Set piWidth to 45
@@ -3396,7 +3396,7 @@ Including file: SelectJugador.wo    (C:\Users\Usuario\Documents\DataFlex Project
 39061>>>
 39061>>>            WebRegisterPath ntNavigateForward oZoomJugador
 39067>>>
-39067>>>            // En DataFlex se usa AddButton para definir el icono vectorial circular
+39067>>>      
 39067>>>            Procedure OnDefineButtons
 39070>>>                Send AddButton "btnInfo" "" "WebIcon_Info" "WebBtn_Flat"
 39071>>>            End_Procedure
@@ -3488,7 +3488,7 @@ Including file: SelectJugador.wo    (C:\Users\Usuario\Documents\DataFlex Project
 39160>Send StartWebApp of oWebApp
 39161>
 Summary
-Memory Available: 39118057472
+Memory Available: 39110184960
 Total Warnings : 0
 Total Errors   : 0
 Total Symbols  : 25650
