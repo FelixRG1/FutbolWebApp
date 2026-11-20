@@ -3,6 +3,8 @@
 Open jugador
 Open jugadorposicion
 Open equipo
+Open CodeMast 
+
 Object oJugadorNacionalidad_VT is a CodeValidationTable
     Set Type_Value to "NACIONALIDAD"
 End_Object
@@ -31,5 +33,6 @@ Class cjugadorDataDictionary is a DataDictionary
         
 
     End_Procedure
+
 
 End_Class
