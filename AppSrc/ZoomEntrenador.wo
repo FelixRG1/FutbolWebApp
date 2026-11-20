@@ -64,6 +64,7 @@ Object oZoomEntrenador is a cWebView
             Set psLabel to "País"
             Set peLabelPosition to lpTop
             Set pbServerOnChange to True
+            Set pbAddEmptyItem to False 
         
             Procedure OnChange String sNewValue String sOldValue
                 WebSet psValue of oentrenador_NacionalidadAuto to sNewValue

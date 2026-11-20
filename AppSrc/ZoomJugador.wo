@@ -81,10 +81,10 @@ Object oZoomJugador is a cWebView
                 Set psLabel to "País"
                 Set peLabelPosition to lpTop
                 Set pbServerOnChange to True
+                Set pbAddEmptyItem to False 
             
                 Procedure OnChange String sNewValue String sOldValue
-                   
-                    WebSet psValue of ojugador_NacionalidadAuto to sNewValue
+                   WebSet psValue of ojugador_NacionalidadAuto to sNewValue
                 End_Procedure
             End_Object
             
