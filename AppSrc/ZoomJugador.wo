@@ -32,6 +32,18 @@ Object oZoomJugador is a cWebView
     Object ojugador_DD is a cjugadorDataDictionary
         Set DDO_Server To oequipo_DD
     End_Object 
+    
+    Procedure OnPostFind Integer eMessage Boolean bFound
+        String sNacionalidad
+        Forward Send OnPostFind eMessage bFound
+        If (bFound) Begin
+            Get Field_Current_Value Field jugador.Nacionalidad to sNacionalidad
+            WebSet psValue of (ojugador_NacionalidadAuto(Self)) to sNacionalidad
+        End
+        Else Begin
+            WebSet psValue of (ojugador_NacionalidadAuto(Self)) to ""
+        End
+    End_Procedure
 
     Set Main_DD To ojugador_DD
     Set Server  To ojugador_DD
@@ -63,13 +75,27 @@ Object oZoomJugador is a cWebView
                 Set psLabel to "Apellido"
             End_Object
 
-            Object oJugadorNacionalidad is a cWebForm
-                Entry_Item Jugador.Nacionalidad
-                Set piColumnSpan to 12
-                Set piColumnIndex to 0
+            Object ojugador_PaisCombo is a cWebCombo
+                Entry_Item jugador.Nacionalidad
+                Set piColumnSpan to 6
+                Set psLabel to "País"
                 Set peLabelPosition to lpTop
-                Set psLabel to "Nacionalidad"
+                Set pbServerOnChange to True
+            
+                Procedure OnChange String sNewValue String sOldValue
+                   
+                    WebSet psValue of ojugador_NacionalidadAuto to sNewValue
+                End_Procedure
             End_Object
+            
+            Object ojugador_NacionalidadAuto is a cWebForm
+                Set piColumnSpan to 6
+                Set piColumnIndex to 6
+                Set psLabel to "Nacionalidad"
+                Set peLabelPosition to lpTop
+                Set pbEnabled to False
+            End_Object
+         
         End_Object
 
         Object oGrpDeporte is a cWebGroup
@@ -200,7 +226,8 @@ Object oZoomJugador is a cWebView
             WebSet pbEnabled of oJugadorNombre to False 
             WebSet pbEnabled of oJugadorApellido to False 
             WebSet pbEnabled of oEquipoNombre to False 
-            
+            WebSet psValue of ojugador_NacionalidadAuto to (Trim(Jugador.Nacionalidad))
+
         End
         Else Begin
             WebSet psCaption to "Nuevo Jugador"
@@ -210,6 +237,7 @@ Object oZoomJugador is a cWebView
             WebSet pbEnabled of oJugadorNombre to True
             WebSet pbEnabled of oJugadorApellido to True
             WebSet pbEnabled of oEquipoNombre to True
+            WebSet psValue of ojugador_NacionalidadAuto to ""
 
         End
     
