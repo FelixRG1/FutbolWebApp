@@ -98,6 +98,11 @@ Object oZoomEntrenador is a cWebView
             Set psCaption to "Editar"
             Procedure OnClick
                 Send ChangeEditMode True
+                Send ChangeEditMode True
+                WebSet pbEnabled of oentrenadorNombre to False
+                WebSet pbEnabled of oentrenadorApellido to False
+                WebSet pbEnabled of oEquipoNombre to True
+                Send SetActionButtons
                 Send SetActionButtons
             End_Procedure
 
@@ -167,11 +172,20 @@ Object oZoomEntrenador is a cWebView
             WebSet psCaption to ("Entrenador: " + Trim(Entrenador.Nombre))
             Send SetHeaderCaption ("Entrenador: " + Trim(Entrenador.Nombre))
             Send SetBreadCrumbCaption (Trim(Entrenador.Nombre))
+            
+            WebSet pbEnabled of oentrenadorNombre to False
+            WebSet pbEnabled of oentrenadorApellido to False
+            WebSet pbEnabled of oEquipoNombre to False
+            
         End
         Else Begin
             WebSet psCaption to "Nuevo Entrenador"
             Send SetHeaderCaption "Nuevo Entrenador"
             Send SetBreadCrumbCaption "Nuevo"
+
+            WebSet pbEnabled of oEntrenadorNombre to True
+            WebSet pbEnabled of oEntrenadorApellido to True
+            WebSet pbEnabled of oEquipoNombre to True
         End
     
         Send SetActionButtons

@@ -120,6 +120,7 @@ Object oZoomLiga is a cWebView
             Set psCaption to "Editar"
             Procedure OnClick
                 Send ChangeEditMode True
+                WebSet pbEnabled of oligaNombre to False
                 Send SetActionButtons
             End_Procedure
 
@@ -189,11 +190,17 @@ Object oZoomLiga is a cWebView
             WebSet psCaption to ("Liga: " + Trim(Liga.Nombre))
             Send SetHeaderCaption ("Liga: " + Trim(Liga.Nombre))
             Send SetBreadCrumbCaption (Trim(Liga.Nombre))
+            
+            WebSet pbEnabled of oLigaNombre to False 
+            
         End
         Else Begin
             WebSet psCaption to "Nueva Liga"
             Send SetHeaderCaption "Nueva Liga"
             Send SetBreadCrumbCaption "Nueva"
+
+            WebSet pbEnabled of oLigaNombre to True
+
         End
     
         Send SetActionButtons

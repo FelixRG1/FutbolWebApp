@@ -31,28 +31,6 @@ Object oZoomEquipo is a cWebView
     Set Main_DD to oequipo_DD
     Set Server  to oequipo_DD
     
-    Procedure OnNavigateForward tWebNavigateData NavigateData Handle hoInvokingView Handle hoInvokingObject
-        Boolean bHasRecord
-        String sNombre
-        
-        Forward Send OnNavigateForward NavigateData hoInvokingView hoInvokingObject
-    
-        Get HasRecord of (Server(Self)) to bHasRecord
-    
-        If (bHasRecord) Begin
-            Move (Trim(Equipo.Nombre)) to sNombre
-            WebSet psCaption to ("Equipo: " + sNombre)
-            Send SetHeaderCaption ("Equipo: " + sNombre)
-            Send SetBreadCrumbCaption sNombre
-        End
-        Else Begin
-            WebSet psCaption to "Nuevo Equipo"
-            Send SetHeaderCaption "Nuevo Equipo"
-            Send SetBreadCrumbCaption "Nuevo"
-        End
-
-        Send SetActionButtons
-    End_Procedure
 
     Object oWebMainPanel is a cWebPanel
             Set piColumnCount to 12
@@ -108,6 +86,10 @@ Object oZoomEquipo is a cWebView
 
             Procedure OnClick
                 Send ChangeEditMode True
+                Send ChangeEditMode True
+                WebSet pbEnabled of oEquipoNombre to False
+                WebSet pbEnabled of oLigaNombre to True
+                Send SetActionButtons
                 Send SetActionButtons
             End_Procedure
         End_Object 
@@ -165,4 +147,33 @@ Object oZoomEquipo is a cWebView
         Send NavigateClose Self
     End_Procedure
 
+    Procedure OnNavigateForward tWebNavigateData NavigateData Handle hoInvokingView Handle hoInvokingObject
+        Boolean bHasRecord
+        String sNombre
+        
+        Forward Send OnNavigateForward NavigateData hoInvokingView hoInvokingObject
+    
+        Get HasRecord of (Server(Self)) to bHasRecord
+    
+        If (bHasRecord) Begin
+            Move (Trim(Equipo.Nombre)) to sNombre
+            WebSet psCaption to ("Equipo: " + sNombre)
+            Send SetHeaderCaption ("Equipo: " + sNombre)
+            Send SetBreadCrumbCaption sNombre
+            
+            WebSet pbEnabled of oEquipoNombre to False 
+            WebSet pbEnabled of oLigaNombre to False 
+        End
+        Else Begin
+            WebSet psCaption to "Nuevo Equipo"
+            Send SetHeaderCaption "Nuevo Equipo"
+            Send SetBreadCrumbCaption "Nuevo"
+
+            WebSet pbEnabled of oEquipoNombre to True
+            WebSet pbEnabled of oLigaNombre to True
+        End
+
+        Send SetActionButtons
+    End_Procedure
+    
 End_Object
