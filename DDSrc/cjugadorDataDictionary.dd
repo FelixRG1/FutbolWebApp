@@ -3,6 +3,9 @@
 Open jugador
 Open jugadorposicion
 Open equipo
+Object oJugadorNacionalidad_VT is a CodeValidationTable
+    Set Type_Value to "NACIONALIDAD"
+End_Object
 
 Class cjugadorDataDictionary is a DataDictionary
     
@@ -24,6 +27,7 @@ Class cjugadorDataDictionary is a DataDictionary
         Set Field_Option Field jugador.Apellido DD_REQUIRED to True
         Set Field_Option Field jugador.Nombre DD_NOENTER to True
         Set Field_Option Field jugador.Apellido DD_NOENTER to True
+        Set Field_Value_Table Field jugador.Nacionalidad to oJugadorNacionalidad_VT
         
 
     End_Procedure

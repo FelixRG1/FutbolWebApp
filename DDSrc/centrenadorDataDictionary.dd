@@ -1,7 +1,10 @@
 ﻿Use DataDict.pkg
-
 Open entrenador
 Open equipo
+
+Object oNacionalidad_VT is a CodeValidationTable
+    Set Type_Value to "NACIONALIDAD"
+End_Object
 
 Class centrenadorDataDictionary is a DataDictionary
     
@@ -12,7 +15,7 @@ Class centrenadorDataDictionary is a DataDictionary
         Set Add_Server_File to equipo.File_Number
 
         Set Foreign_Field_Option DD_KEYFIELD DD_NOPUT to False 
-        Set Foreign_Field_Option DD_KEYFIELD DD_FINDREQ to True
+        Set Foreign_Field_Option DD_KEYFIELD DD_FINDREQ to False 
         Set Foreign_Field_Option DD_INDEXFIELD DD_NOPUT to False 
         Set Foreign_Field_Option DD_DEFAULT DD_DISPLAYONLY to True
         Set Key_Field_State Field entrenador.ID to True
@@ -20,7 +23,18 @@ Class centrenadorDataDictionary is a DataDictionary
         Set Field_Option Field entrenador.Apellido DD_REQUIRED to True
         Set Field_Option Field entrenador.Nombre DD_NOENTER to True
         Set Field_Option Field entrenador.Apellido DD_NOENTER to True
+        Set ParentNullAllowed equipo.File_Number to True  
+        Set Field_Value_Table Field entrenador.Nacionalidad to oNacionalidad_VT
 
     End_Procedure
+    
+        Procedure Null_Parent Integer iFile
+            Forward Send Null_Parent iFile
+            If (iFile = equipo.File_Number) Begin
+                Set_Attribute DF_FIELD_NULL_ALLOWED of entrenador.File_Number 5 to True
+                Set_Field_Value entrenador.File_Number 5 to ""
+            End
+        End_Procedure
+
 
 End_Class

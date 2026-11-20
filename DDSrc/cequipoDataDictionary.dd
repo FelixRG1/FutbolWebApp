@@ -12,7 +12,6 @@ Class cequipoDataDictionary is a DataDictionary
         Set Main_File to equipo.File_Number
 
         Set Add_Server_File to liga.File_Number
-
         Set Add_Client_File to entrenador.File_Number
         Set Add_Client_File to jugador.File_Number
 
@@ -24,7 +23,44 @@ Class cequipoDataDictionary is a DataDictionary
         Set Field_Option Field equipo.Nombre DD_REQUIRED to True
         Set Field_Option Field equipo.LigaID DD_REQUIRED to True
         Set Field_Option Field equipo.Nombre DD_NOENTER to True
-
+        
     End_Procedure
+
+    Procedure Backout
+            Integer iEquipos
+            Forward Send Backout
+            If (HasRecord(liga.File_Number)) Begin
+                Get Field_Current_Value Field liga.Equipos to iEquipos
+                If (iEquipos > 0) Begin
+                    Set Field_Changed_Value Field liga.Equipos to (iEquipos - 1)
+                End
+            End
+        End_Procedure
+    
+        Procedure Update
+            Integer iEquipos
+            Forward Send Update
+            If (HasRecord(liga.File_Number)) Begin
+                Get Field_Current_Value Field liga.Equipos to iEquipos
+                Set Field_Changed_Value Field liga.Equipos to (iEquipos + 1)
+            End
+        End_Procedure
+    
+        Function Validate_Save Returns Boolean
+            Boolean bErr
+            Integer iEquipos iEquiposMax
+            Forward Get Validate_Save to bErr
+            If (not(bErr) and HasRecord(liga.File_Number)) Begin
+                Get Field_Current_Value Field liga.Equipos to iEquipos
+                Get Field_Current_Value Field liga.EquiposMax to iEquiposMax
+                If (iEquiposMax > 0 and iEquipos > iEquiposMax) Begin
+                    Send UserError ("No se pueden asignar más de " + String(iEquiposMax) + " equipos a esta liga.") "Límite de Liga"
+                    Move True to bErr
+                End
+            End
+            Function_Return bErr
+        End_Function
+        
+
 
 End_Class
